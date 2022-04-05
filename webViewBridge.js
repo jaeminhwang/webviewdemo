@@ -1,5 +1,5 @@
 (function () {
-
+    console.log('>>>>>>> webViewBridge 진입');
     var promiseChain = Promise.resolve();
     var callbacks = {};
     var init = function () {
