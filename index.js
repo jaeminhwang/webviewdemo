@@ -22,7 +22,7 @@
 
         // "doCommand"는 react-native에서 받는 메서드 이름입니다.
         window.webViewBridge.send('doCommand', option, function(res) {
-            $('#result').html(JSON.stringify(res))
+            $('#result2').html(JSON.stringify(res))
         }, function(err) {
             console.error(err)
         })
