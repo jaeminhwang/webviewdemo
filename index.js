@@ -9,7 +9,7 @@
     
     function sendMsgToRN( msg ) {
       //window.parent.postMessage( msg, '*' );
-      window.ReactNativeWebView.postMessage(msg);      
+      window.ReactNativeWebView.postMessage(JSON.stringify(msg));      
     }
 
     // react-native에 통신을 요청한다.
