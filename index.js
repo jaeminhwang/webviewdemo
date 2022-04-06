@@ -3,10 +3,11 @@
     // react-native에 통신을 요청한다.
     $('#btnSend').on('click', function() {    
         console.log(">>>>> RN Webview 통신 테스트");
-        window.ReactNativeWebView.postMessage("Hello, React Native Webview");        
+        sendMsgToParent("Hello, React Native Webview");     
     })
     
     function sendMsgToParent( msg ) {
+      window.ReactNativeWebView.postMessage(msg);
       window.parent.postMessage( msg, '*' );
     }
 
@@ -14,7 +15,7 @@
     $('#btnCommand').on('click', function() {
         var option = {
             "vender": "OnTheLive",
-            "type": "Respone",
+            "type": "Response",
             "command": "TurnOnCam",
             "transaction": "2",
             "data": "Success"
@@ -22,7 +23,7 @@
        
         // "doCommand"는 react-native에서 받는 메서드 이름입니다.
         sendMsgToParent(option);
-        console.log(">>>>> Command 메시지 전송")
+        console.log(">>>>> Command 메시지 RN Webview로 Response 테스트 전송")
     })
 
     // react-native에 통신을 요청한다.
