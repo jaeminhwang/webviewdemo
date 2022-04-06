@@ -7,12 +7,14 @@
     })
     
     function sendMsgToParent( msg ) {
-      window.ReactNativeWebView.postMessage(msg);
       window.parent.postMessage( msg, '*' );
+      window.ReactNativeWebView.postMessage(msg);      
     }
 
     // react-native에 통신을 요청한다.
     $('#btnCommand').on('click', function() {
+        console.log(">>>>> Command 메시지 RN Webview로 Response 테스트 전송");
+        
         var option = {
             "vender": "OnTheLive",
             "type": "Response",
@@ -21,31 +23,24 @@
             "data": "Success"
         }
        
-        // "doCommand"는 react-native에서 받는 메서드 이름입니다.
         sendMsgToParent(option);
-        console.log(">>>>> Command 메시지 RN Webview로 Response 테스트 전송")
+        
     })
 
     // react-native에 통신을 요청한다.
     $('#btnEnum').on('click', function() {
+        console.log(">>>>> 디바이스 목록 메시지 RN Webview로 Response 테스트 전송")
+        
         var option = {
-    "vender": "OnTheLive",
-    "type": "Request",
-    "command": "EnumerateDevices",
-    "transaction": "1",
-    "data": ""
-    }
+            "vender": "OnTheLive",
+            "type": "Request",
+            "command": "EnumerateDevices",
+            "transaction": "1",
+            "data": ""
+        }
 
-        // "doCommand"는 react-native에서 받는 메서드 이름입니다.
-        window.webViewBridge.send('doEnum', option, function(res) {
-            $('#result3').html(JSON.stringify(res))
-        }, function(err) {
-            console.error(err)
-        })
+        sendMsgToParent(option);
     })
-
-
-
 
 
 
