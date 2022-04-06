@@ -46,8 +46,10 @@
       
       e.data.type = "Response";
       e.data.data = { "result" : "Success" };
-        
+       
+      console.log('[Command] ', e.data.command );  
       if(e.data.command == "EnumerateDevices") {
+          console.log('[Command] EnumerateDevices Enter!');  
           e.data.data = {
                 "camDevices": [
                     {
@@ -75,6 +77,7 @@
         }
 
       } else if(e.data.command == "UserState") {
+          console.log('[Command] UserState Enter!');
           e.data.data = [
               {
                   "userId": "482",
