@@ -7,7 +7,7 @@
     })
     
     function sendMsgToParent( msg ) {
-      window.parent.postMessage( msg, '*' );
+      //window.parent.postMessage( msg, '*' );
       window.ReactNativeWebView.postMessage(msg);      
     }
 
