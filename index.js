@@ -13,6 +13,10 @@
             console.error(err)
         })
     })
+    
+    function sendMsgToParent( msg ) {
+      window.parent.postMessage( msg, '*' );
+    }
 
     // react-native에 통신을 요청한다.
     $('#btnCommand').on('click', function() {
@@ -27,8 +31,8 @@
 }
        
         // "doCommand"는 react-native에서 받는 메서드 이름입니다.
-        window.postMessage(option, '*');
-        console.log(">>>>> 테스트 메시지 전송")
+        sendMsgToParent(option);
+        console.log(">>>>> Command 메시지 전송")
     })
 
     // react-native에 통신을 요청한다.
