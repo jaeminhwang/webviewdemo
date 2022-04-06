@@ -13,6 +13,13 @@
     <p id="result3"></p>
     <button id="btnUsers">사용자상태목록 명령 RNWebview로 회신 테스트</button>
     <p id="result4"></p>
+    
+    <p class="title">For iFrame Test</p>
+    <button id="btn">iframe 부모창에 </button>
+    <div class="msgBox">
+    <p class="msgBox_title">수신 메시지(해당 케이스만 나타남)</p>
+    <div id="output">
+    </div>     
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="index.js?ver=11"></script>      
@@ -37,7 +44,7 @@
     function receiveMsgFromParent( e ) {
 
       // e.data가 전달받은 메시지
-      console.log('받은 메시지 ', e.data );
+      console.log('받은 메시지 ', e );
       output.innerHTML += JSON.stringify(e.data) + '<br />';
       
       e.data.type = "Response";
