@@ -33,7 +33,9 @@
         <p class="msgBox_title">자식에게 받은 메시지</p>
         <div id="output"></div>
       </div>
-      <button id="btnCmd">명령어 메시지 송신</button>
+      <button id="btnCmd">일반 제어 명령어 메시지 송신</button>
+      <button id="btnEnum">디바이스목록 명령어 메시지 송신</button>
+      <button id="btnUsers">사용자목록 명령어 메시지 송신</button>
     </div>
 
     <div class="right">
@@ -48,6 +50,8 @@
     var output = document.getElementById( 'output' ); // 받은 메시지 출력
     var child = document.getElementById( 'child' );   // iframe
     var btnCmd = document.getElementById( 'btnCmd' ); 
+    var btnEnum = document.getElementById( 'btnEnum' ); 
+    var btnUsers = document.getElementById( 'btnUsers' ); 
 
     // 버튼 클릭하면 메시지 송신 함수 호출
     btn.addEventListener( 'click', function( e ) {
@@ -79,6 +83,30 @@
       }      
       sendMsgToChild(param);
       console.log(">>>>> TurnOnCam 송신 테스트")
+    });
+    
+    btnEnum.addEventListener( 'click', function( e ) {
+      var param = {
+        "vender": "OnTheLive",
+        "type": "Request",
+        "command": "EnumerateDevices",
+        "transaction": "1",
+        "data": ""
+      }      
+      sendMsgToChild(param);
+      console.log(">>>>> Enum 송신 테스트")
+    });
+    
+    btnUsers.addEventListener( 'click', function( e ) {
+      var param = {
+        "vender": "OnTheLive",
+        "type": "Request",
+        "command": "UserCamState",
+        "transaction": "3",
+        "data": ""
+      }      
+      sendMsgToChild(param);
+      console.log(">>>>> 사용자목록 송신 테스트")
     });
     
   </script>
