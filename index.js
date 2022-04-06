@@ -4,6 +4,7 @@
     $('#btnSend').on('click', function() {    
         console.log(">>>>> RN Webview 통신 테스트");
         sendMsgToParent("Hello, React Native Webview");     
+        sendMsgToRN("Hello, React Native Webview");  
     })
     
     function sendMsgToRN( msg ) {
