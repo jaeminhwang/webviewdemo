@@ -15,6 +15,7 @@
     <p id="result4"></p>
     
     <p class="title">For iFrame Test</p>
+    <input type="checkbox" id="cbox" name="cbox">
     <button id="btn">iframe 부모창에 메시지 전송 테스트</button>
     <p id="result5"></p>
     <button id="btnRNCmd">RN 트리거 테스트: CMD 일반 명령 </button>
@@ -30,6 +31,8 @@
     var btn = document.getElementById( 'btn' );
     var output = document.getElementById( 'output' );
     var btnRNCmd = document.getElementById( 'btnRNCmd' );
+    
+    var cbox = document.getElementById("cbox");
 
     btn.addEventListener( 'click', function( e ) {
       sendMsgToParent( '엄마! 아빠!' );
@@ -52,8 +55,10 @@
 
     // 부모에게 메시지 송신
     function sendMsgToParent( msg ) {
-      //window.parent.postMessage( msg, '*' );
-      window.ReactNativeWebView.postMessage(JSON.stringify(msg));
+      if(cbox.checked)
+        window.parent.postMessage( msg, '*' );
+      else
+        window.ReactNativeWebView.postMessage(JSON.stringify(msg));
     }
 
     window.addEventListener( 'message', receiveMsgFromParent );
@@ -117,7 +122,7 @@
 
       }
        
-      //sendMsgToParent(e.data);
+      sendMsgToParent(e.data);
         
       console.log('다시 보낸 메시지 ', e.data );
 
