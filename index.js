@@ -6,7 +6,7 @@
         sendMsgToParent("Hello, React Native Webview");     
     })
     
-    function sendMsgToParent( msg ) {
+    function sendMsgToRN( msg ) {
       //window.parent.postMessage( msg, '*' );
       window.ReactNativeWebView.postMessage(msg);      
     }
@@ -23,7 +23,7 @@
             "data": "Success"
         }
        
-        sendMsgToParent(option);
+        sendMsgToRN(option);
         
     })
 
@@ -39,7 +39,7 @@
             "data": ""
         }
 
-        sendMsgToParent(option);
+        sendMsgToRN(option);
     })
 
 
