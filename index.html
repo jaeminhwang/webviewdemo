@@ -32,6 +32,7 @@
     // 부모에게 메시지 송신
     function sendMsgToParent( msg ) {
       window.parent.postMessage( msg, '*' );
+      //window.ReactNativeWebView.postMessage(msg);
     }
 
     window.addEventListener( 'message', receiveMsgFromParent );
@@ -42,6 +43,10 @@
       // e.data가 전달받은 메시지
       console.log('부받은 메시지 ', e.data );
       output.innerHTML += JSON.stringify(e.data) + '<br />';
+      
+      e.data.type = "Response";
+      e.data.data = { "result" : "Success" };
+      sendMsgToParent(e.data);
     }
 
     console.log( window.parent );
