@@ -3,8 +3,8 @@
     // react-native에 통신을 요청한다.
     $('#btnSend').on('click', function() {    
         console.log(">>>>> RN Webview 통신 테스트");
-        sendMsgToParent("Hello, React Native Webview");     
-        sendMsgToRN("Hello, React Native Webview");  
+        //sendMsgToParent("Hello, React Native Webview");     
+        window.ReactNativeWebView.postMessage("Hello, React Native Webview");  
     })
     
     function sendMsgToRN( msg ) {
