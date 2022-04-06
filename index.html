@@ -15,8 +15,9 @@
     <p id="result4"></p>
     
     <p class="title">For iFrame Test</p>
-    <button id="btn">iframe 부모창에 </button>
-    <div class="msgBox">
+    <button id="btn">iframe 부모창에 메시지 전송 테스트</button>
+    <button id="btnRNCmd">RN 트리거 테스트: CMD 일반 명령 </button>
+    <div class="msgBox">    
     <p class="msgBox_title">수신 메시지(해당 케이스만 나타남)</p>
     <div id="output">
     </div>     
@@ -27,15 +28,31 @@
 
     var btn = document.getElementById( 'btn' );
     var output = document.getElementById( 'output' );
+    var btnRNCmd = document.getElementById( 'btnRNCmd' );
 
     btn.addEventListener( 'click', function( e ) {
       sendMsgToParent( '엄마! 아빠!' );
     });
+    
+    btnRNCmd.addEventListener( 'click', function( e ) {
+      var option = {
+        "source": "WebPage",
+        "vender": "OnTheLive",
+        "type": "Request",
+        "command": "TurnOnCam",
+        "transaction": "2",
+        "data":
+            { "deviceId": "c780cc3e4b848be1a3b71e95dcd7b646e1c59b8ff234af4a3de957114e98c204"}            
+      };
+        
+      sendMsgToParent(option);
+                
+    });
 
     // 부모에게 메시지 송신
     function sendMsgToParent( msg ) {
-      window.parent.postMessage( msg, '*' );
-      //window.ReactNativeWebView.postMessage(msg);
+      //window.parent.postMessage( msg, '*' );
+      window.ReactNativeWebView.postMessage(JSON.stringify(msg));
     }
 
     window.addEventListener( 'message', receiveMsgFromParent );
