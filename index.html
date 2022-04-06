@@ -41,12 +41,15 @@
     function receiveMsgFromParent( e ) {
 
       // e.data가 전달받은 메시지
-      console.log('부받은 메시지 ', e.data );
+      console.log('받은 메시지 ', e.data );
       output.innerHTML += JSON.stringify(e.data) + '<br />';
       
       e.data.type = "Response";
       e.data.data = { "result" : "Success" };
       sendMsgToParent(e.data);
+        
+      console.log('다시 보낸 메시지 ', e.data );
+
     }
 
     console.log( window.parent );
