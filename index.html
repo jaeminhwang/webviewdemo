@@ -40,7 +40,7 @@
 
       // e.data가 전달받은 메시지
       console.log('부받은 메시지 ', e.data );
-      output.innerHTML += e.data + '<br />';
+      output.innerHTML += JSON.stringify(e.data) + '<br />';
     }
 
     console.log( window.parent );
