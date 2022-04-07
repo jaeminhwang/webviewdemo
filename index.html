@@ -97,40 +97,13 @@
       await sleep(3000);
       console.log('after sleep');
         
-      if(cbox.checked)
-        window.parent.postMessage( msg, '*' );
-      else
-        window.ReactNativeWebView.postMessage(JSON.stringify(msg));
-
-      console.log('웹페이지에서 보낸 메시지 ', msg );
-    }
-    
-    /*
-    // 부모에게 메시지 송신
-    function sendMsgToParent( msg ) {
-      if(cbox.checked)
-        window.parent.postMessage( msg, '*' );
-      else
-        window.ReactNativeWebView.postMessage(JSON.stringify(msg));
-    }
-    */
-
-    window.addEventListener( 'message', receiveMsgFromParent );
-
-    // 부모로부터 메시지 수신
-    function receiveMsgFromParent( e ) {
-
-      // e.data가 전달받은 메시지
-      console.log('받은 메시지 ', e );
-      output.innerHTML += JSON.stringify(e.data) + '<br />';
-      
-      e.data.type = "Response";
-      e.data.data = { "result" : "Success" };
+      msg.type = "Response";
+      msg.data = { "result" : "Success" };
        
-      console.log('[Command] ', e.data.command );  
-      if(e.data.command == "EnumerateDevices") {
+      console.log('[Command] ', msg.command );  
+      if(msg.command == "EnumerateDevices") {
           console.log('[Command] EnumerateDevices Enter!');  
-          e.data.data = {
+          msg.data = {
                 "camDevices": [
                     {
                         "deviceId": "c780cc3e4b848be1a3b71e95dcd7b646e1c59b8ff234af4a3de957114e98c204",
@@ -155,9 +128,9 @@
                 ]
           }
           
-      } else if(e.data.command == "UserState") {
+      } else if(msg.command == "UserState") {
           console.log('[Command] UserState Enter!');
-          e.data.data = [
+          msg.data = [
               {
                   "userId": "482",
                   "state": {
@@ -174,8 +147,35 @@
               }
          ]
 
-      }
-       
+      }        
+        
+      if(cbox.checked)
+        window.parent.postMessage( msg, '*' );
+      else
+        window.ReactNativeWebView.postMessage(JSON.stringify(msg));
+                
+      console.log('웹페이지에서 보낸 메시지 ', msg );
+    }
+    
+    /*
+    // 부모에게 메시지 송신
+    function sendMsgToParent( msg ) {
+      if(cbox.checked)
+        window.parent.postMessage( msg, '*' );
+      else
+        window.ReactNativeWebView.postMessage(JSON.stringify(msg));
+    }
+    */
+
+    window.addEventListener( 'message', receiveMsgFromParent );
+
+    // 부모로부터 메시지 수신
+    function receiveMsgFromParent( e ) {
+
+      // e.data가 전달받은 메시지
+      console.log('받은 메시지 ', e );
+      output.innerHTML += JSON.stringify(e.data) + '<br />';
+                  
       sendMsgToParent(e.data);
               
 
