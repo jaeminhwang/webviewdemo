@@ -19,6 +19,11 @@
     <button id="btn">iframe 부모창에 메시지 전송 테스트</button>
     <p id="result5"></p>
     <button id="btnRNCmd">RN 트리거 테스트: CMD 일반 명령 </button>
+    <p id="result6"></p>
+    <button id="btnRNEnum">RN 트리거 테스트: 기기목록 일반 명령 </button>
+    <p id="result7"></p>
+    <button id="btnRNUsers">RN 트리거 테스트: 사용자상태목록 일반 명령 </button>
+    <p id="result8"></p>
     <div class="msgBox">    
     <p class="msgBox_title">수신 메시지(해당 케이스만 나타남)</p>
     <div id="output">
@@ -31,6 +36,8 @@
     var btn = document.getElementById( 'btn' );
     var output = document.getElementById( 'output' );
     var btnRNCmd = document.getElementById( 'btnRNCmd' );
+    var btnRNEnum = document.getElementById( 'btnRNEnum' );
+    var btnRNUsers = document.getElementById( 'btnRNUsers' );
     
     var cbox = document.getElementById("cbox");
 
@@ -52,6 +59,34 @@
       sendMsgToParent(option);
                 
     });
+    
+    btnRNUsers.addEventListener( 'click', function( e ) {
+      var option = {
+        "source": "WebPage",
+        "vender": "OnTheLive",
+        "type": "Request",
+        "command": "EnumerateDevices",
+        "transaction": "2",
+        "data": ""
+      };
+        
+      sendMsgToParent(option);
+                
+    });
+    
+    btnRNEnum.addEventListener( 'click', function( e ) {
+      var option = {
+        "source": "WebPage",
+        "vender": "OnTheLive",
+        "type": "Request",
+        "command": "UserState",
+        "transaction": "2",
+        "data": ""
+      };
+        
+      sendMsgToParent(option);
+                
+    });    
 
     // 부모에게 메시지 송신
     function sendMsgToParent( msg ) {
