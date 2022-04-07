@@ -87,12 +87,19 @@
       sendMsgToParent(option);
                 
     });    
+    
+    async function sendMsgToParent( msg ) {
+      if(cbox.checked)
+        window.parent.postMessage( msg, '*' );
+      else
+        window.ReactNativeWebView.postMessage(JSON.stringify(msg));
+    }
 
     function sleep(ms) {
       return new Promise((r) => setTimeout(r, ms));
     }
     
-    async function sendMsgToParent( msg ) {
+    async function returnMsgToParent( msg ) {
       console.log('before sleep');
       await sleep(3000);
       console.log('after sleep');
@@ -176,9 +183,10 @@
       console.log('받은 메시지 ', e );
       output.innerHTML += JSON.stringify(e.data) + '<br />';
                   
-      sendMsgToParent(e.data);
+      returnMsgToParent(e.data);
+        
+      console.log(' == eod of receiveMsgFromParent == ');
               
-
     }
 
     console.log( window.parent );
