@@ -88,6 +88,20 @@
                 
     });    
 
+    async function sendMsgToParent( msg ) {
+      console.log('before sleep');
+      await sleep(3000);
+      console.log('after sleep');
+        
+      if(cbox.checked)
+        window.parent.postMessage( msg, '*' );
+      else
+        window.ReactNativeWebView.postMessage(JSON.stringify(msg));
+
+      console.log('웹페이지에서 보낸 메시지 ', msg );
+    }
+    
+    /*
     // 부모에게 메시지 송신
     function sendMsgToParent( msg ) {
       if(cbox.checked)
@@ -95,6 +109,7 @@
       else
         window.ReactNativeWebView.postMessage(JSON.stringify(msg));
     }
+    */
 
     window.addEventListener( 'message', receiveMsgFromParent );
 
@@ -158,8 +173,7 @@
       }
        
       sendMsgToParent(e.data);
-        
-      console.log('다시 보낸 메시지 ', e.data );
+              
 
     }
 
