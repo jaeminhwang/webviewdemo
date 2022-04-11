@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <h1>RN message 이벤트 수신 핸들러 테스트2</h1>
+    <h1>RN message 이벤트 수신 핸들러 테스트3</h1>
     <div id="output">
     </div>     
  
@@ -21,7 +21,7 @@
       console.log('받은 메시지 ', e);
       output.innerHTML += JSON.stringify(e.data) + '<br />';
 
-      var msg = e.data;
+      var msg = JSON.parse(e.data);
         
       msg.type = "Response";
       msg.data = { "result" : "Success" };
