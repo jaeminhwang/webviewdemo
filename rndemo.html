@@ -74,7 +74,7 @@
 
       }        
         
-      window.ReactNativeWebView.postMessage(msg);
+      window.ReactNativeWebView.postMessage(JSON.stringify(msg));
                      
       output.innerHTML += ' == eod of receiveMsgFromParent ==  <br />';
               
