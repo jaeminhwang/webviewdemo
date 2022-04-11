@@ -23,13 +23,13 @@
 
       var msg = e.data;
         
+      msg.type = "Response";
+      msg.data = { "result" : "Success" };
+  
       output.innerHTML += JSON.stringify(msg) + '<br />';
         
       return;
-        
-      msg.type = "Response";
-      msg.data = { "result" : "Success" };
-       
+               
       output.innerHTML += '[Command] ' + msg.command + '<br />';
       
       if(msg.command == "EnumerateDevices") {
