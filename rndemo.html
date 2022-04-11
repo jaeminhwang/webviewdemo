@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+    <h1>RN message 이벤트 수신 핸들러 테스트</h1>
+    <div id="output">
+    </div>     
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+
+    window.addEventListener( 'message', receiveMsgFromParent );
+
+    // 메세지 수신
+    function receiveMsgFromParent( e ) {
+
+      // e.data가 전달받은 메시지
+      console.log('받은 메시지 ', e);
+      output.innerHTML += JSON.stringify(e.data) + '<br />';
+
+      var msg = e.data;
+        
+      msg.type = "Response";
+      msg.data = { "result" : "Success" };
+       
+      console.log('[Command] ', msg.command );  
+      
+      if(msg.command == "EnumerateDevices") {
+          console.log('[Command] EnumerateDevices Enter!');  
+          msg.data = {
+                "camDevices": [
+                    {
+                        "deviceId": "c780cc3e4b848be1a3b71e95dcd7b646e1c59b8ff234af4a3de957114e98c204",
+                        "groupId": "16b370f1f458fb03f5719dfadd6cddeacf47a3f8b656ce7cbb111a8bd11ddbe2",
+                        "kind": "videoinput",
+                        "label": "Front Cam"
+                    },
+                    {
+                        "deviceId": "d780cc3e4b848be1a3b71e95dcd7b646e1c59b8ff234af4a3de957114e98c205",
+                        "groupId": "16b370f1f458fb03f5719dfadd6cddeacf47a3f8b656ce7cbb111a8bd11ddbe2",
+                        "kind": "videoinput",
+                        "label": "Back Cam"
+                    }
+                ],
+                "micDevices": [
+                    {
+                        "deviceId": "1534a85b06813bf64069fe162f87d5224df37ab822219762f58c8d0c64df66e0",
+                        "groupId": "16b370f1f458fb03f5719dfadd6cddeacf47a3f8b656ce7cbb111a8bd11ddbe2",
+                        "kind": "audioinput",
+                        "label": "마이크(Logitech StreamCam)"
+                    }
+                ]
+          }
+          
+      } else if(msg.command == "UserState") {
+          console.log('[Command] UserState Enter!');
+          msg.data = [
+              {
+                  "userId": "482",
+                  "state": {
+                    "camOn":"true",
+                    "micOn":"true"
+                  }
+              },
+              {
+                  "userId": "483",
+                  "state": {
+                    "camOn":"true",
+                    "micOn":"true"
+                  }
+              }
+         ]
+
+      }        
+        
+      window.ReactNativeWebView.postMessage(JSON.stringify(msg));
+                     
+      console.log(' == eod of receiveMsgFromParent == ');
+              
+    }
+
+
+  </script>
+
+  
+      
+</body>
+</html>
+
