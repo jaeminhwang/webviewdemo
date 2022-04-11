@@ -23,6 +23,10 @@
 
       var msg = e.data;
         
+      output.innerHTML += JSON.stringify(msg) + '<br />';
+        
+      return;
+        
       msg.type = "Response";
       msg.data = { "result" : "Success" };
        
