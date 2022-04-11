@@ -22,19 +22,12 @@
       output.innerHTML += JSON.stringify(e.data) + '<br />';
 
       var msg = JSON.parse(e.data);
-        
-      msg.type = "Response";
-      msg.data = { "result" : "Success" };
-  
-      output.innerHTML += JSON.stringify(msg) + '<br />';
-        
-      return;
-               
+                       
       output.innerHTML += '[Command] ' + msg.command + '<br />';
       
       if(msg.command == "EnumerateDevices") {
-          output.innerHTML += '[Command] EnumerateDevices Enter! <br />';
-          //console.log('[Command] EnumerateDevices Enter!');  
+          //output.innerHTML += '[Command] EnumerateDevices Enter! <br />';
+          console.log('[Command] EnumerateDevices Enter!');  
           msg.data = {
                 "camDevices": [
                     {
