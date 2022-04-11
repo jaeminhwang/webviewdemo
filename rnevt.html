@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+    <h1>RN message 이벤트 수신 핸들러 테스트</h1>
+    <div id="output">
+    </div>     
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+
+    window.addEventListener( 'message', receiveMsgFromParent );
+
+    // 메세지 수신
+    function receiveMsgFromParent( e ) {
+
+      // e.data가 전달받은 메시지
+      console.log('받은 메시지 ', e );
+      output.innerHTML += JSON.stringify(e.data) + '<br />';
+                          
+      console.log(' == eod of receiveMsgFromParent == ');
+              
+    }
+
+
+  </script>
+
+  
+      
+</body>
+</html>
