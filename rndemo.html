@@ -26,10 +26,11 @@
       msg.type = "Response";
       msg.data = { "result" : "Success" };
        
-      console.log('[Command] ', msg.command );  
+      output.innerHTML += '[Command] ' + msg.command + '<br />';
       
       if(msg.command == "EnumerateDevices") {
-          console.log('[Command] EnumerateDevices Enter!');  
+          output.innerHTML += '[Command] EnumerateDevices Enter! <br />';
+          //console.log('[Command] EnumerateDevices Enter!');  
           msg.data = {
                 "camDevices": [
                     {
@@ -78,7 +79,7 @@
         
       window.ReactNativeWebView.postMessage(msg);
                      
-      console.log(' == eod of receiveMsgFromParent == ');
+      output.innerHTML += ' == eod of receiveMsgFromParent ==  <br />';
               
     }
 
