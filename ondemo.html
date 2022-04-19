@@ -2,15 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+      .container {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>  
 </head>
 
 <body>
 
-  <div class="wrap">
+  <div class="container">
     <button id="btnCam">카메라</button>
     <button id="btnMic">마이크</button>
     <div id="oaoPlayer">
-      <iframe src="https://live-commerce-dev.onthe.live/pins?room=3f031821-2717-442b-a1d5-9a74230308a5&code=322365" id="oaoPlayerIframe" width="100%" height="100%" frameborder="0"></iframe>
+      <iframe src="https://live-commerce-dev.onthe.live/pins?room=3f031821-2717-442b-a1d5-9a74230308a5&code=322365" class="container" id="oaoPlayerIframe" frameborder="0"></iframe>
     </div>
   </div>
 
