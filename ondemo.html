@@ -13,8 +13,8 @@
 <body>
 
   <div class="container">
-    <button id="btnCam">카메라</button>
-    <button id="btnMic">마이크</button>
+    <button id="btnCamOn">카메라On</button>
+    <button id="btnCamOff">카메라Off</button>
     <div id="oaoPlayer">
       <iframe src="https://live-commerce-dev.onthe.live/pins?room=3f031821-2717-442b-a1d5-9a74230308a5&code=322365" class="container" id="oaoPlayerIframe" frameborder="0"></iframe>
     </div>
@@ -23,19 +23,32 @@
 
   <script>
 
-    var btnCam = document.getElementById( 'btnCam' ); 
-    var btnMic = document.getElementById( 'btnMic' );
+    var btnCamOn = document.getElementById( 'btnCamOn' ); 
+    var btnCamOff = document.getElementById( 'btnCamOff' );
 
-    btnCam.addEventListener( 'click', function( e ) {
+    btnCamOn.addEventListener( 'click', function( e ) {
       var option = {
         "vendor": "OnTheLive",
         "type": "Request",
-        "command": "EnumerateDevices",
-        "transaction": "2"
+        "command": "TurnMic",
+        "transaction": "2",
+        "data": {"on":"true"}
       };
 
       sendMsgToChild(option);
     });
+      
+    btnCamOff.addEventListener( 'click', function( e ) {
+      var option = {
+        "vendor": "OnTheLive",
+        "type": "Request",
+        "command": "TurnMic",
+        "transaction": "2",
+        "data": {"on":"false"}
+      };
+
+      sendMsgToChild(option);
+    });      
 
     function sendMsgToChild( msg ) {
       oaoPlayerIframe.contentWindow.postMessage( JSON.stringify(msg), '*' );
