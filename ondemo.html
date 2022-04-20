@@ -31,8 +31,8 @@
         "vendor": "OnTheLive",
         "type": "Request",
         "command": "TurnCam",
-        "transaction": "2",
-        "data": {"on":"true"}
+        "transaction": 6,
+        "data":{"on":true}
       };
 
       sendMsgToChild(option);
@@ -42,16 +42,16 @@
       var option = {
         "vendor": "OnTheLive",
         "type": "Request",
-        "command": "ChangeCamDevice",
-        "transaction": "4",
-        "data": {"deviceId":"1f7ba6538657293806aae15566ebb0db8bb3972a3a3705fb963f469783df4cc2"}
+        "command": "TurnCam",
+        "transaction": 6,
+        "data":{"on":false}
       };
 
       sendMsgToChild(option);
     });      
 
     function sendMsgToChild( msg ) {
-      oaoPlayerIframe.contentWindow.postMessage( JSON.stringify(msg), '*' );
+      oaoPlayerIframe.contentWindow.postMessage( msg, '*' );
     }
 
 
