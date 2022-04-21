@@ -21,6 +21,13 @@
       console.log('받은 메시지 ', e);
       output.innerHTML += JSON.stringify(e.data) + '<br />';
 
+      
+      try {
+          var msg = JSON.parse(e.data);
+      } catch (ex) {
+          var msg = e.data;
+      }
+
       var msg = JSON.parse(e.data);
       msg.type = "Response";
       msg.data = { "result" : "Success" };        
