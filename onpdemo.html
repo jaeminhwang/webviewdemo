@@ -77,12 +77,17 @@
           CLICK_PRODUCT: undefined,
           CLICK_PIP: () => {
             //player.classList.add("pip");
+            SoyPlayer.dispatch("SET_PIP_MODE", false);
+
+            var cam = document.getElementsByClassName("_ToolGroup_button__LkiY7 _ToolGroup_coupon__wYL1D");
+            console.log(cam);
+            cam[0].addEventListener("click", onCam);
+
             player.childNodes[0].childNodes[4].remove(); 
             player.childNodes[0].childNodes[0].remove(); 
-            SoyPlayer.dispatch("SET_PIP_MODE", false);
             var onplayer = document.createElement("div");
             onplayer.style.cssText = "margin-top:50px";
-            onplayer.innerHTML = "<iframe src='https://live-commerce-dev.onthe.live/pins?room=3f031821-2717-442b-a1d5-9a74230308a5&code=322365&withParent=https://jaeminhwang.github.io' class='container' id='oaoPlayerIframe' allow='camera *;microphone *' allow-same-origin frameborder='0'></iframe>";
+            onplayer.innerHTML = "<iframe src='https://live-commerce-dev.onthe.live/pins?room=3f031821-2717-442b-a1d5-9a74230308a5&code=322365&withParent=https://jaeminhwang.github.io' class='container' id='oaoPlayerIframe' allow='camera *;microphone *' allow-same-origin frameborder='0' ondblclick='onDoubleClickPlayer()''></iframe>";
             player.childNodes[0].appendChild(onplayer);
           },
           CLICK_CLOSE: () => {
@@ -106,6 +111,17 @@
         SoyPlayer.dispatch("SET_PIP_MODE", false);
         player.classList.remove("pip");
 
+      }
+      setupSoyPlayer("62679adfc28128001362ea3b");
+
+      function sendMsgToChild( msg ) {
+        oaoPlayerIframe.contentWindow.postMessage( msg, "*" );
+      }
+
+      function onCam() {
+       
+        console.log("onCam");
+
         var option = {
           "vendor": "OnTheLive",
           "type": "Request",
@@ -115,11 +131,6 @@
         };
 
         sendMsgToChild(option);
-      }
-      setupSoyPlayer("62679adfc28128001362ea3b");
-
-      function sendMsgToChild( msg ) {
-        oaoPlayerIframe.contentWindow.postMessage( msg, "*" );
       }
 
     </script>
