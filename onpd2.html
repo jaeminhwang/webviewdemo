@@ -77,9 +77,14 @@
           CLICK_PRODUCT: undefined,
           CLICK_PIP: () => {
             //player.classList.add("pip");
+            SoyPlayer.dispatch("SET_PIP_MODE", false);
+
+            var cam = document.getElementsByClassName("_ToolGroup_button__LkiY7 _ToolGroup_coupon__wYL1D");
+            console.log(cam);
+            cam[0].addEventListener("click", onCam);
+
             player.childNodes[0].childNodes[4].remove(); 
             player.childNodes[0].childNodes[0].remove(); 
-            SoyPlayer.dispatch("SET_PIP_MODE", false);
             var onplayer = document.createElement("div");
             onplayer.style.cssText = "margin-top:50px";
             onplayer.innerHTML = "<iframe src='https://live-commerce-dev.onthe.live/pins?room=3f031821-2717-442b-a1d5-9a74230308a5&code=844330&withParent=https://jaeminhwang.github.io' class='container' id='oaoPlayerIframe' allow='camera *;microphone *' allow-same-origin frameborder='0'></iframe>";
@@ -122,8 +127,35 @@
         oaoPlayerIframe.contentWindow.postMessage( msg, "*" );
       }
 
+      function onCam() {
+       
+        console.log("onCam");
+
+        var option = {
+          "vendor": "OnTheLive",
+          "type": "Request",
+          "command": "TurnCam",
+          "transaction": 6,
+          "data":{"on":true}
+        };
+
+        sendMsgToChild(option);
+      }
+
 
     </script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
