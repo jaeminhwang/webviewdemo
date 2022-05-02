@@ -14,7 +14,9 @@
 
   <div class="container">
     <button id="btnCamOn">카메라On</button>
-    <button id="btnCamOff">카메라Off</button>
+    <button id="btnMicOn">마이크On</button>
+    <button id="btnAudioOn">오디오On</button>
+    <button id="btnDevices">기기목록</button>
     <button id="btnUsers">사용자목록</button>
     <div id="oaoPlayer">
       <iframe src="https://live-commerce-dev.onthe.live/pins?room=3f031821-2717-442b-a1d5-9a74230308a5&code=322365&withParent=https://jaeminhwang.github.io" class="container" id="oaoPlayerIframe" allow="camera *;microphone *" allow-same-origin frameborder="0"></iframe>
@@ -25,7 +27,9 @@
   <script>
 
     var btnCamOn = document.getElementById( 'btnCamOn' ); 
-    var btnCamOff = document.getElementById( 'btnCamOff' );
+    var btnMicOn = document.getElementById( 'btnMicOn' );
+    var btnAudioOn = document.getElementById( 'btnAudioOn' );
+    var btnDevices = document.getElementById( 'btnDevices' );
     var btnUsers = document.getElementById( 'btnUsers' );
 
     btnCamOn.addEventListener( 'click', function( e ) {
@@ -40,13 +44,36 @@
       sendMsgToChild(option);
     });
       
-    btnCamOff.addEventListener( 'click', function( e ) {
+    btnMicOn.addEventListener( 'click', function( e ) {
       var option = {
         "vendor": "OnTheLive",
         "type": "Request",
-        "command": "TurnCam",
+        "command": "TurnMic",
         "transaction": 6,
-        "data":{"on":false}
+        "data":{"on":true}
+      };
+
+      sendMsgToChild(option);
+    });
+      
+    btnAudioOn.addEventListener( 'click', function( e ) {
+      var option = {
+        "vendor": "OnTheLive",
+        "type": "Request",
+        "command": "TurnAudio",
+        "transaction": 6,
+        "data":{"on":true}
+      };
+
+      sendMsgToChild(option);
+    });
+      
+    btnDevices.addEventListener( 'click', function( e ) {
+      var option = {
+        "vendor": "OnTheLive",
+        "type": "Request",
+        "command": "EnumerateDevices",
+        "transaction": 2
       };
 
       sendMsgToChild(option);
