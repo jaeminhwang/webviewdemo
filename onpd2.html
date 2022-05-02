@@ -81,10 +81,13 @@
 
             var cam = document.getElementsByClassName("_ButtonGroup_right__NXBAw");
             var cln = cam[0].childNodes[0].cloneNode(true);
+            var cln2 = cam[0].childNodes[0].cloneNode(true);
 
             console.log(cln);
             cln.addEventListener("click", onCam);
+            cln2.addEventListener("click", onTurnAudio);
             cam[0].appendChild(cln);
+            cam[0].appendChild(cln2);
 
             player.childNodes[0].childNodes[4].remove(); 
             player.childNodes[0].childNodes[0].remove(); 
@@ -144,6 +147,21 @@
 
         sendMsgToChild(option);
       }
+      
+      function onTurnAudio() {
+        
+        console.log("onTurnAudio");
+        
+        var option = {
+          "vendor": "OnTheLive",
+          "type": "Request",
+          "command": "TurnAudio",
+          "transaction": 6,
+          "data":{"on":true}
+        };
+
+        sendMsgToChild(option);
+      }      
 
 
     </script>
