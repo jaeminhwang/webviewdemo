@@ -79,9 +79,12 @@
             //player.classList.add("pip");
             SoyPlayer.dispatch("SET_PIP_MODE", false);
 
-            var cam = document.getElementsByClassName("_ToolGroup_button__LkiY7 _ToolGroup_coupon__wYL1D");
-            console.log(cam);
-            cam[0].addEventListener("click", onCam);
+            var cam = document.getElementsByClassName("_ButtonGroup_right__NXBAw");
+            var cln = cam[0].childNodes[0].cloneNode(true);
+
+            console.log(cln);
+            cln.addEventListener("click", onCam);
+            cam[0].appendChild(cln);
 
             player.childNodes[0].childNodes[4].remove(); 
             player.childNodes[0].childNodes[0].remove(); 
